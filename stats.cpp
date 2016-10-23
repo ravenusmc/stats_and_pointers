@@ -31,6 +31,7 @@ using namespace std;
 //Prototype Functions
 //*******************************
 
+void welcome();
 
 
 //******************************
@@ -40,6 +41,7 @@ using namespace std;
 int main(){
     
     //Calling functions which will drive the program
+    welcome();
 
     
     //system("pause"); //This line is for Microsoft Visual users.
@@ -52,6 +54,12 @@ int main(){
 //Functions
 //******************************
 
+//This function simply greets the user.
+void welcome(){
+    cout << "Welcome to movie stats!" << endl;
+    cout << "This program will show the user statistical information" << endl;
+    cout << "about the number of movies a college student watches per month" << endl;
+}//End of welcome function
 
 
 //Write a program that can be used to gather statistical data about the number of movies college students see in a month. The program should perform the following steps:
