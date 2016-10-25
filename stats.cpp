@@ -32,6 +32,12 @@ using namespace std;
 //*******************************
 
 void welcome();
+void numMovies(int *, int);
+void sortArray(int *, int);
+double getAverage(int *, int);
+double getMode(int *, int);
+double getMedian(int *, int);
+void displayData(double, double, double);
 
 
 //******************************
@@ -40,33 +46,29 @@ void welcome();
 
 int main(){
     
-    //Calling functions which will drive the program
-    //welcome();
+    //Creating variables
+    int *survey, students;
+    double average, median, mode;
     
-    const int SIZE = 5;
-    int nums[SIZE] = {0,1,2,100,154};
+    //This function will welcome the user.
+    welcome();
     
-    //Variables to find the median
-    int odd;
-    int odd_median;
+    // This line will get the number of students surveyed for the size of the array.
+    cout << "Please enter the number of students surveyed: " << endl;
+    cin  >> students;
     
-    float num_one;
-    float num_two;
-    float even_median;
+    //Creating the array based on the size of the students
+    survey = new int[students];
     
-    if (SIZE % 2 != 0){
-        odd = (SIZE + 1) / 2;
-        odd_median = nums[odd - 1];
-        cout << odd_median << endl;
-    }else if (SIZE % 2 == 0){
-        num_one = (SIZE - 1) / 2;
-        num_two = ((SIZE - 1) / 2) + 1;
-        even_median = (num_one + num_two) / 2;
-        cout << even_median << endl;
-    }
-   
-
-
+    //These functions will basically drive the program.
+    numMovies(survey, students);
+    //sortArray(survey, students);
+    average = getAverage(survey, students);
+    mode = getMode(survey, students);
+    median = getMedian(survey, students);
+    
+    displayData(average, mode, median);
+    
     
     //system("pause"); //This line is for Microsoft Visual users.
     
@@ -85,38 +87,107 @@ void welcome(){
     cout << "about the number of movies a college student watches per month" << endl;
 }//End of welcome function
 
+//This function will get the number of movies that each student watched;
+void numMovies(int *array, int size) {
+    
+    cout << "Please input the number of movies each student watched: " << endl;
+    for (int i = 0; i < size; i++){
+        cout << "student " << (i + 1) << ": ";
+        cin >> *(array + i);
+    }
+
+}//End of numMovies function
+
+//This function will sort the array will will be helpful down the line for the statistical aspects
+void sortArray(int *array, int size){
+
+
+}//Enf of sortArray function.
+
+//This function will get the average of the array
+double getAverage(int *array, int size){
+    
+    double avg;
+    int total = 0;
+    
+    for (int i = 0; i < size; i++){
+        total += *(array + i);
+    }
+    
+    avg = total /size;
+
+    return avg;
+
+}//Enf of getAverage function
+
 
 //This function will calculate the mode in the array.
-//void mode(){
-//
-//    int value;
-//    int count = 0;
-//    int temp_count = 0;
-//    int mode = 0;
-//    
-//    
-//    for (int i = 0; i < SIZE; i++){
-//        value = nums[i];
-//        temp_count = 0;
-//        //cout << value << endl;
-//        for (int j = 0; j <SIZE; j++){
-//            if (nums[j] == value){
-//                temp_count += 1;
-//            }
-//        }
-//        if (temp_count > count ){
-//            count = temp_count;
-//            mode = value;
-//        }
-//    }
-//    
+double getMode(int *array, int size){
+
+    int value;
+    int count = 0;
+    int temp_count = 0;
+    int mode = 0;
+    
+    
+    for (int i = 0; i < size; i++){
+        value = array[i];
+        temp_count = 0;
+        //cout << value << endl;
+        for (int j = 0; j < size; j++){
+            if (array[j] == value){
+                temp_count += 1;
+            }
+        }
+        if (temp_count > count ){
+            count = temp_count;
+            mode = value;
+        }
+    }
+    
 //    if (count == 1){
 //        cout << "There was no mode since no number appeared more than twice." << endl;
 //    }else {
 //        cout << "The mode was " << mode << endl;
 //        cout << "The " << mode << " appeared " << count << " times" << endl;
 //    }
-//}// End of mode function
+    return mode;
+    
+} // End of mode function
+
+
+double getMedian(int *array, int size){
+
+    //Variables to find the median
+    int odd;
+    double odd_median;
+    double num_one;
+    double num_two;
+    double even_median;
+    double median;
+
+    if (size % 2 != 0){
+        odd = (size + 1) / 2;
+        odd_median = array[odd - 1];
+        return odd_median;
+    }else if (size % 2 == 0){
+        num_one = (size - 1) / 2;
+        num_two = ((size - 1) / 2) + 1;
+        even_median = (num_one + num_two) / 2;
+        return even_median;
+    }
+    
+    return median;
+}
+
+void displayData(double avg, double mode, double med){
+    
+    cout << "Here is the results of the data: " << endl;
+    cout << "The average was: " << avg;
+    cout << "The mode was: " << mode;
+    cout << "The median was: " << med;
+    
+}
 
 
 //Write a program that can be used to gather statistical data about the number of movies college students see in a month. The program should perform the following steps:
