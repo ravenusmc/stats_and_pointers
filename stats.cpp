@@ -63,7 +63,6 @@ int main(){
     
     displayData(average, mode, median);
     
-    
     //system("pause"); //This line is for Microsoft Visual users.
     
     return 0;
@@ -128,9 +127,7 @@ double getAverage(int *array, int size){
     for (int i = 0; i < size; i++){
         total += *(array + i);
     }
-    
-    cout << "total: " << total << endl;
-    cout << "size: " << size << endl;
+
     
     avg = total /size;
 
@@ -147,11 +144,9 @@ double getMode(int *array, int size){
     int temp_count = 0;
     int mode = 0;
     
-    
     for (int i = 0; i < size; i++){
         value = array[i];
         temp_count = 0;
-        //cout << value << endl;
         for (int j = 0; j < size; j++){
             if (array[j] == value){
                 temp_count += 1;
@@ -163,12 +158,6 @@ double getMode(int *array, int size){
         }
     }
     
-//    if (count == 1){
-//        cout << "There was no mode since no number appeared more than twice." << endl;
-//    }else {
-//        cout << "The mode was " << mode << endl;
-//        cout << "The " << mode << " appeared " << count << " times" << endl;
-//    }
     return mode;
     
 } // End of mode function
@@ -187,14 +176,36 @@ double getMedian(int *array, int size){
     
     return Median;
 
-    //Variables to find the median
+    
+}//End of median function
+
+//This function will display the average, mode and median.
+void displayData(double avg, double mode, double med){
+    
+    cout << "Here is the results of the data: " << endl;
+    cout << "The average was: " << avg << endl;
+    cout << "The median was: " << med << endl;
+    if (mode == 1){
+            cout << "There was no mode since every number appeared only once." << endl;
+    }else {
+        cout << "The mode was " << mode << endl;
+    }
+    
+}//End of displayData function
+
+
+//Input Validation: Do not accept negative numbers for input.
+
+
+
+//Variables to find the median
 //    int odd;
 //    double odd_median;
 //    double num_one;
 //    double num_two;
 //    double even_median;
 //    double median;
-    
+
 //    cout << "size: " << size << endl;
 //
 //    if (size % 2 != 0){
@@ -209,25 +220,6 @@ double getMedian(int *array, int size){
 //        //even_median = (array[num_one] + array[num_two]) / 2;
 //        return even_median;
 //    }
-    
-}//End of median function
-
-//This function will display the average, mode and median.
-void displayData(double avg, double mode, double med){
-    
-    cout << "Here is the results of the data: " << endl;
-    cout << "The average was: " << avg << endl;
-    cout << "The mode was: " << mode << endl;
-    cout << "The median was: " << med << endl;
-    
-}//End of displayData function
-
-
-//Input Validation: Do not accept negative numbers for input.
-
-
-
-
 
 
 
