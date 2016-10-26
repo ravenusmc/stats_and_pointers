@@ -63,7 +63,7 @@ int main(){
     
     displayData(average, mode, median);
     
-    //system("pause"); //This line is for Microsoft Visual users.
+    system("pause"); //This line is for Microsoft Visual users.
     
     return 0;
     
@@ -158,18 +158,35 @@ double getMode(int *array, int size){
         }
     }
     
+    //I have included this check because I want to alert the user to the fact that there is no
+    //mode if the count is equal to one. This means, that each number only appears once.
+    if (count == 1){
+        mode = -99;
+    }
+    
     return mode;
     
 } // End of mode function
 
 //This function will get the median from the data.
 double getMedian(int *array, int size){
+
     
-    int middle = (size -1 ) / 2;
+    int middle = (size - 1 ) / 2;
+    int num_one, num_two;
     double Median;
+    //I use these variables just to convert some values to a double to get a precise
+    //average.
+    double convert_one, convert_two;
     
     if (size % 2 == 0){
-        Median = (*(array + middle) + *(array + (middle + 1))) / 2;
+        num_one = (size / 2) - 1;
+        num_two = ((size - 1) / 2) + 1;
+        convert_one = array[num_one];
+        convert_two = array[num_two];
+        Median = (convert_one + convert_two) / 2;
+        cout << Median << endl;
+        //Median = (*(array + middle) + *(array + (middle + 1))) / 2;
     }else {
         Median = *(array + middle);
     }
@@ -185,7 +202,7 @@ void displayData(double avg, double mode, double med){
     cout << "Here is the results of the data: " << endl;
     cout << "The average was: " << avg << endl;
     cout << "The median was: " << med << endl;
-    if (mode == 1){
+    if (mode == -99){
             cout << "There was no mode since every number appeared only once." << endl;
     }else {
         cout << "The mode was " << mode << endl;
@@ -194,7 +211,6 @@ void displayData(double avg, double mode, double med){
 }//End of displayData function
 
 
-//Input Validation: Do not accept negative numbers for input.
 
 
 
