@@ -63,6 +63,10 @@ int main(){
     
     displayData(average, mode, median);
     
+    //Destroying the dynamically allocated memory
+    delete [] survey;
+    survey = nullptr;
+    
     system("pause"); //This line is for Microsoft Visual users.
     
     return 0;
@@ -83,11 +87,14 @@ void welcome(){
 //This function will get the number of movies that each student watched;
 void numMovies(int *array, int size) {
     
+    
     cout << "Please input the number of movies each student watched: " << endl;
+    //This for loop will allow the user to enter in the number of movies that each student watched.
+    //The information will be inputted into an array.
     for (int i = 0; i < size; i++){
         cout << "student " << (i + 1) << ": ";
         cin >> array[i];
-        //cin >> *(array + i);
+        //Validation check to ensure that values below zero are not entered.
         while ( array[i]  < 0 ){
             cout << "value cannot be below one!" << endl;
             cout << "student " << (i + 1) << ": ";
@@ -103,6 +110,7 @@ void sortArray(int *array, int size){
     bool swap;
     int temp;
     
+    //This do loop will sort the array.
     do
     {
         swap = false;
@@ -124,13 +132,15 @@ double getAverage(int *array, int size){
     double avg;
     double total = 0;
     
+    //The for loop gets the total of all the values in the array.
     for (int i = 0; i < size; i++){
         total += *(array + i);
     }
 
-    
+    //The total is then divided by the size of the array to get the average.
     avg = total /size;
 
+    //The average is then returned.
     return avg;
 
 }//Enf of getAverage function
@@ -144,6 +154,9 @@ double getMode(int *array, int size){
     int temp_count = 0;
     int mode = 0;
     
+    //These two for loops will go through the array looking for the mode. The first for loop starts
+    //at the array's first position while the second for loop will take every value in the array and
+    //compare it to every other value. If a match is found the counter will increase by one.
     for (int i = 0; i < size; i++){
         value = array[i];
         temp_count = 0;
@@ -186,7 +199,6 @@ double getMedian(int *array, int size){
         convert_two = array[num_two];
         Median = (convert_one + convert_two) / 2;
         cout << Median << endl;
-        //Median = (*(array + middle) + *(array + (middle + 1))) / 2;
     }else {
         Median = *(array + middle);
     }
@@ -212,30 +224,6 @@ void displayData(double avg, double mode, double med){
 
 
 
-
-
-//Variables to find the median
-//    int odd;
-//    double odd_median;
-//    double num_one;
-//    double num_two;
-//    double even_median;
-//    double median;
-
-//    cout << "size: " << size << endl;
-//
-//    if (size % 2 != 0){
-//        odd = (size + 1) / 2;
-//        odd_median = array[odd - 1];
-//        return odd_median;
-//    }else if (size % 2 == 0){
-//        num_one = (size / 2) - 1;
-//        cout << array[num_one];
-//        //num_two = ((size - 1) / 2) + 1;
-//        num_two = (size / 2) + 1;
-//        //even_median = (array[num_one] + array[num_two]) / 2;
-//        return even_median;
-//    }
 
 
 
